@@ -1,0 +1,42 @@
+using System;
+
+namespace MathOperationAppMS
+{
+    // This is the class that contains the method we will use 'MathOperationMS'.
+    class MathOperationMS
+    {
+        // This is a void method that accepts two integers as parameters.
+        public void PerformOperationMS(int num1, int num2)
+        {
+            // Perform a math operation on the first integer (e.g., multiply by 2).
+            int result = num1 * 2;
+
+            // Display the result of the operation on num1.
+            Console.WriteLine("Result of operation on first number: " + result);
+
+            // Display the second integer passed to the method.
+            Console.WriteLine("Second number is: " + num2);
+        }
+    }
+
+    // This is the main program class.
+    class ProgramMS 
+    {
+        // The Main method is the entry point of the application.
+        static void Main(string[] args)
+        {
+            // Create an instance (object) of the MathOperationMS class.
+            MathOperationMS math = new MathOperationMS();
+
+            // Call the method and pass two integer values.
+            math.PerformOperationMS(10, 5);
+
+            // Call the method again, using named parameters.
+            math.PerformOperationMS(num1: 7, num2: 3);
+
+            // Wait for user input to close the console window.
+            Console.WriteLine("Press any key to exit...");
+            Console.ReadKey();
+        }
+    }
+}
