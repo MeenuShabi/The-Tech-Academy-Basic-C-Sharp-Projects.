@@ -1,0 +1,78 @@
+// See https://aka.ms/new-console-template for more information
+Console.WriteLine("Hello, World!");
+using System;
+
+namespace EmployeeComparisonMS // Namespace with MS suffix
+{
+    // EmployeeMS class with Id, FirstNameMS, and LastNameMS properties
+    class EmployeeMS
+    {
+        public int Id { get; set; }                // Employee ID
+        public string FirstNameMS { get; set; }    // Employee first name
+        public string LastNameMS { get; set; }     // Employee last name
+
+        // Overloading the == operator to compare EmployeeMS objects by Id
+        public static bool operator ==(EmployeeMS emp1, EmployeeMS emp2)
+        {
+            // Handle null values to avoid null reference exception
+            if (ReferenceEquals(emp1, null) && ReferenceEquals(emp2, null)) return true;
+            if (ReferenceEquals(emp1, null) || ReferenceEquals(emp2, null)) return false;
+
+            // Compare Ids of both employees
+            return emp1.Id == emp2.Id;
+        }
+
+        // Overloading the != operator as required when overloading ==
+        public static bool operator !=(EmployeeMS emp1, EmployeeMS emp2)
+        {
+            return !(emp1 == emp2); // Reuse the logic of == to define !=
+        }
+
+        // Override Equals for consistency with operator overloading
+        public override bool Equals(object obj)
+        {
+            if (obj == null || GetType() != obj.GetType()) return false;
+            EmployeeMS other = (EmployeeMS)obj;
+            return Id == other.Id;
+        }
+
+        // Override GetHashCode when overriding Equals
+        public override int GetHashCode()
+        {
+            return Id.GetHashCode();
+        }
+    }
+
+    // Program class with Main method
+    class ProgramMS
+    {
+        static void Main(string[] args)
+        {
+            // Create first EmployeeMS object and assign values
+            EmployeeMS employee1 = new EmployeeMS()
+            {
+                Id = 101,
+                FirstNameMS = "Meenu",
+                LastNameMS = "Shaby"
+            };
+
+            // Create second EmployeeMS object and assign values
+            EmployeeMS employee2 = new EmployeeMS()
+            {
+                Id = 101,
+                FirstNameMS = "Meena",
+                LastNameMS = "Thomas"
+            };
+
+            // Compare the two employees using overloaded ==
+            bool areEqual = employee1 == employee2;
+
+            // Display the result of the comparison
+            Console.WriteLine("Are both employees equal? " + areEqual);
+
+            // Keep the console open
+            Console.WriteLine("Press any key to exit...");
+            Console.ReadKey();
+        }
+    }
+}
