@@ -1,0 +1,50 @@
+using System;
+
+namespace InterfaceExampleMS
+{
+    // Define an interface called IQuittable with a void method Quit
+    interface IQuittable
+    {
+        void Quit(); // Method signature only, to be implemented by a class
+    }
+
+    // Define a base EmployeeMS class that implements the IQuittable interface
+    class EmployeeMS : IQuittable
+    {
+        // Sample properties for demonstration
+        public string FirstNameMS { get; set; }
+        public string LastNameMS { get; set; }
+
+        // Constructor to initialize employee properties
+        public EmployeeMS(string firstName, string lastName)
+        {
+            FirstNameMS = firstName;
+            LastNameMS = lastName;
+        }
+
+        // Implement the Quit method from the IQuittable interface
+        public void Quit()
+        {
+            // Custom message printed when Quit is called
+            Console.WriteLine($"{FirstNameMS} {LastNameMS} has quit the job. Goodbye!");
+        }
+    }
+
+    // Main program class
+    class ProgramMS
+    {
+        // Main method: entry point of the console app
+        static void Main(string[] args)
+        {
+            // Create an object of type IQuittable using polymorphism
+            IQuittable quitterMS = new EmployeeMS("Meenu", "Shaby");
+
+            // Call the Quit method on the interface-typed object
+            quitterMS.Quit();
+
+            // Keep console window open until a key is pressed
+            Console.WriteLine("Press any key to exit...");
+            Console.ReadKey();
+        }
+    }
+}
